@@ -28,3 +28,26 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+
+def cooking(request):
+    recipe_name = request.GET.get('recipe', 'omlet')
+    recipe = DATA.get(recipe_name, {})
+    context = {
+        'recipe': recipe
+    }
+    return render(request, 'calculator/index.html', context)
+
+
+def servings(request):
+    recipe_name = request.GET.get('recipe', 'omlet')
+    servings_count = int(request.GET.get('servings', 1))
+    recipe = DATA.get(recipe_name, {})
+
+    new_recipe = {ingredient: amount * servings_count for ingredient, amount in recipe.items()}
+
+    context = {
+        'recipe': new_recipe
+    }
+
+    return render(request, 'calculator/index.html', context)
