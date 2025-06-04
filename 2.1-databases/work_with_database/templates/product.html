@@ -14,9 +14,9 @@
   </div>
 
   <div class="content">
-    <img src="{{ phone.image }}" alt="{{ phone.name }}"/>
-    <div>Стоимость: {{ phone.price }} ₽</div>
-    <div>Дата выпуска: {{ phone.release_date }}</div>
-    <div>LTE: {{ phone.lte_exists|yesno:'есть,нет' }}</div>
+    <img src="{{ product.image }}" alt="{{ product.name }}"/>
+    <div>Стоимость: {{ product.price }} ₽</div>
+    <div>Дата выпуска: {{ product.release_date }}</div>
+    <div>LTE: {{ product.lte_exists|yesno:'есть,нет' }}</div>
   </div>
 {% endblock %}

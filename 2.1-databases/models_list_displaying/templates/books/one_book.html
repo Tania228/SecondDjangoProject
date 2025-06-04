@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.name }}</title>
+</head>
+<body>
+    <h1>{{ book.name }}</h1>
+    <p>Автор: {{ book.author }}</p>
+    <p>Дата публикации: {{ book.pub_date }}</p>
+    <p>Описание: {{ book.description }}</p>
+
+    <hr>
+
+    <h2>Пагинация по датам</h2>
+    <div>
+        {% if previous_date %}
+            <a href="{% url 'book_for_the_date' previous_date %}">Книги за предыдущую дату ({{ previous_date }})</a>
+        {% endif %}
+
+        {% if next_date %}
+            <a href="{% url 'book_for_the_date' next_date %}">Книги за следующую дату ({{ next_date }})</a>
+        {% endif %}
+    </div>
+
+    <hr>
+
+    <h2>Книги на эту дату:</h2>
+    {% for e in page %}
+        <p>{{ e.name }} - {{ e.pub_date }}</p>
+    {% endfor %}
+
+    {% if page.has_previous %}
+        <a href="?page={{ page.previous_page_number }}">Назад</a>
+    {% endif %}
+
+    {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}">Вперед</a>
+    {% endif %}
+
+</body>
+</html>
